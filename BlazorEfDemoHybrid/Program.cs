@@ -1,5 +1,6 @@
-using BlazorEfDemoHybrid.Client.Pages;
 using BlazorEfDemoHybrid.Components;
+using BlazorEfDemoHybrid.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
 	.AddInteractiveServerComponents()
 	.AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddDbContext<GameContext>(options =>
+	options.UseSqlServer(builder.Configuration.GetConnectionString("GameDbConnection"))
+);
+
+builder.Services.AddScoped<DataAccess>();
 
 var app = builder.Build();
 

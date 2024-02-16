@@ -1,0 +1,51 @@
+﻿@page "/game-list"
+
+@inject DataAccess dataAccess
+@inject NavigationManager navigationManager
+
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<h3>GameList</h3>
+
+@if (games is null)
+{
+	<p>Loading...</p>
+}
+else
+{
+	<ul>
+		@foreach (var game in games)
+		{
+			<li>
+				@game.Name
+				<button @onclick="() => EditGame(game.Id)">Edit</button>
+			</li>
+		}
+	</ul>
+	<button class="btn btn-primary" @onclick="AddNewGame">Add new game</button>
+}
+@code {
+	private List<Game> games;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			var result = await dataAccess.GetAllGames();
+			games = result;
+			StateHasChanged();
+		}
+	}
+
+	void AddNewGame()
+	{
+		navigationManager.NavigateTo("/edit-game");
+	}
+
+	void EditGame(int id)
+	{
+		navigationManager.NavigateTo("/edit-game/" + id);
+
+	}
+}

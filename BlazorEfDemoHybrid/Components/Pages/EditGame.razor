@@ -1,0 +1,50 @@
+﻿@page "/edit-game"
+@page "/edit-game/{id:int}"
+
+@rendermode InteractiveServer
+
+@inject NavigationManager navigationManager
+@inject DataAccess dataAccess
+
+<h3>AddGame</h3>
+
+<EditForm Model="game" OnSubmit="HandleSubmit" FormName="gameForm">
+	<label>Name</label>
+	<InputText @bind-Value="game.Name">@game.Name</InputText>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+@code {
+	[Parameter]
+	public int Id { get; set; }
+
+	[SupplyParameterFromForm]
+	public Game game { get; set; } = new Game { Name = "" };
+
+	private bool editMode = false;
+
+	async Task HandleSubmit()
+	{
+		if (editMode)
+		{
+			await dataAccess.UpdateGame(game);
+		}
+		else
+		{
+			await dataAccess.AddGame(game);
+		}
+		navigationManager.NavigateTo("/game-list");
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (Id != 0)
+		{
+			var result = await dataAccess.GetGameById(Id);
+			if (result is not null)
+			{
+				game = result;
+				editMode = true;
+			}
+		}
+	}
+}

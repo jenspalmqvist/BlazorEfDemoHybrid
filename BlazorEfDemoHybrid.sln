@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34526.213
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEfDemoHybrid", "BlazorEfDemoHybrid\BlazorEfDemoHybrid.csproj", "{0D0463AB-9D90-403F-8E10-2AB55D21E0FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEfDemoHybrid", "BlazorEfDemoHybrid\BlazorEfDemoHybrid.csproj", "{0D0463AB-9D90-403F-8E10-2AB55D21E0FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEfDemoHybrid.Client", "BlazorEfDemoHybrid.Client\BlazorEfDemoHybrid.Client.csproj", "{ABEDB38E-EBA0-42D9-90E3-51A3111E3C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEfDemoHybrid.Client", "BlazorEfDemoHybrid.Client\BlazorEfDemoHybrid.Client.csproj", "{ABEDB38E-EBA0-42D9-90E3-51A3111E3C52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
